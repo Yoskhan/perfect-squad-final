@@ -7,17 +7,25 @@
 
 <script>
 import Header from "./components/Header.vue";
+import axios from "axios";
 
 export default {
   name: "App",
   components: {
     "app-header": Header
+  },
+  created() {
+    axios
+      .get("https://jsonblob.com/api/jsonBlob/50fd5df9-8283-11ea-a9e3-ab457510f846")
+      .then(response => {
+        console.log(response.data);
+        this.$store.dispatch("fetchData", response.data);
+      });
   }
 };
 </script>
 
 <style>
-
 html,
 body {
   height: 100%;
@@ -26,15 +34,7 @@ body {
   padding: 0;
 }
 
-.app-header {
-  margin: 0;
-  padding: 0;
-  top: 0;
+#app {
+  font-family: Arial;
 }
-
-.router-view {
-  margin: 2.5rem 0 0 0;
-  height: 500px;
-}
-
 </style>
