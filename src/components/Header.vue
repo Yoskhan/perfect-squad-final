@@ -14,8 +14,13 @@
               <router-link to="/favourites" class="Header_ListItem">Favourites</router-link>
             </li>
             <li class="Header_ListItem">
-              <div class="Header_FormationsBtn" @click="formationsDropdown = !formationsDropdown">
-                Formation: {{ activeFormation }}
+              <div
+                class="Header_FormationsBtn"
+                @click="formationsDropdown = !formationsDropdown"
+                v-click-outside="hideFormationsDropdown"
+              >
+                Formation:
+                <i>{{ activeFormation }}</i>
               </div>
               <ul class="Header_FormationsContainer" v-if="formationsDropdown">
                 <li
@@ -23,7 +28,7 @@
                   :key="formation"
                   class="Header_FormationListItem"
                   @click="setActiveFormation(formation)"
-                  :class="{ 'Header_selectedFormation' : formation == $store.state.activeFormation}"
+                  :class="{'Header_SelectedFormation' : formation == $store.state.activeFormation}"
                 >{{ formation }}</li>
               </ul>
             </li>
@@ -52,17 +57,23 @@ export default {
   methods: {
     setActiveFormation(formation) {
       this.$store.dispatch("setActiveFormation", formation);
+    },
+    hideFormationsDropdown() {
+      this.formationsDropdown = false;
     }
   }
 };
 </script>
 
 <style scoped>
+* {
+  z-index: 1;
+}
 .Header {
   width: 100vw;
   height: 2.5rem;
   background-color: #203c00;
-  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.75);
 }
 
 .Header_Container {
@@ -101,6 +112,7 @@ export default {
 
 .Header_FormationsBtn {
   width: 4rem;
+  cursor: pointer;
 }
 
 .Header_FormationsContainer {
@@ -117,9 +129,10 @@ export default {
 .Header_FormationListItem {
   list-style-type: none;
   padding: 0.3rem;
+  cursor: pointer;
 }
 
-.Header_selectedFormation {
+.Header_SelectedFormation {
   color: orange;
 }
 </style>
