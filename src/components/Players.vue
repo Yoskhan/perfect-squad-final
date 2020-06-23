@@ -6,7 +6,12 @@
           <p>GK</p>
         </div>
         <div class="PlayerCards_Container">
-          <playercard v-for="player in playersGroupedByCategory.GK" :key="player.name" :player="player"></playercard>
+          <playercard
+            v-for="player in playersGroupedByCategory.GK"
+            :key="player.name"
+            :player="player"
+            @togglePlayerDetail="isPlayerDetailToggled = !isPlayerDetailToggled; shownPlayerDetail = $event"
+          ></playercard>
         </div>
       </div>
       <div class="DEF_Container">
@@ -14,7 +19,12 @@
           <p>DEF</p>
         </div>
         <div class="PlayerCards_Container">
-          <playercard v-for="player in playersGroupedByCategory.DEF" :key="player.name" :player="player"></playercard>
+          <playercard
+            v-for="player in playersGroupedByCategory.DEF"
+            :key="player.name"
+            :player="player"
+            @togglePlayerDetail="isPlayerDetailToggled = !isPlayerDetailToggled; shownPlayerDetail = $event"
+          ></playercard>
         </div>
       </div>
       <div class="MID_Container">
@@ -22,7 +32,12 @@
           <p>MID</p>
         </div>
         <div class="PlayerCards_Container">
-          <playercard v-for="player in playersGroupedByCategory.MID" :key="player.name" :player="player"></playercard>
+          <playercard
+            v-for="player in playersGroupedByCategory.MID"
+            :key="player.name"
+            :player="player"
+            @togglePlayerDetail="isPlayerDetailToggled = !isPlayerDetailToggled; shownPlayerDetail = $event"
+          ></playercard>
         </div>
       </div>
       <div class="ATT_Container">
@@ -30,35 +45,43 @@
           <p>ATT</p>
         </div>
         <div class="PlayerCards_Container">
-          <playercard v-for="player in playersGroupedByCategory.ATT" :key="player.name" :player="player"></playercard>
+          <playercard
+            v-for="player in playersGroupedByCategory.ATT"
+            :key="player.name"
+            :player="player"
+            @togglePlayerDetail="isPlayerDetailToggled = !isPlayerDetailToggled; shownPlayerDetail = $event"
+          ></playercard>
         </div>
       </div>
     </div>
+    <playerdetail
+      :class="{isToggled: isPlayerDetailToggled}"
+      v-on:click-on-overlay="isPlayerDetailToggled = !isPlayerDetailToggled"
+      v-on:closeplayerdetail="isPlayerDetailToggled = !isPlayerDetailToggled"
+      :playerShown="shownPlayerDetail"
+    ></playerdetail>
   </div>
 </template>
 
 <script>
 import PlayerCard from "./PlayerCard.vue";
+import PlayerDetails from "./PlayerDetails.vue";
+import EmptyPlayerObject from '../store/emptyPlayerObject.js'
 
 export default {
   data() {
-    return {};
+    return {
+      isPlayerDetailToggled: true,
+      shownPlayerDetail: EmptyPlayerObject
+    };
   },
   components: {
-    playercard: PlayerCard
+    playercard: PlayerCard,
+    playerdetail: PlayerDetails
   },
   computed: {
     playersGroupedByCategory() {
       return this.$store.getters.getPlayersGroupedByCategory;
-    },
-    DEFPlayers() {
-      return this.$store.getters.getPlayersDEF;
-    },
-    MIDPlayers() {
-      return this.$store.getters.getPlayersMID;
-    },
-    ATTPlayers() {
-      return this.$store.getters.getPlayersATT;
     }
   }
 };
@@ -106,9 +129,11 @@ export default {
   width: 80%;
 }
 
-.bezze {
-  background-color: tomato;
-  width: 80%;
-  height: 20px;
+.PlayerDetail_Component {
+  display: none;
+}
+
+.isToggled {
+  display: none;
 }
 </style>

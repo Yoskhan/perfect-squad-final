@@ -52,7 +52,7 @@ export default {
   width: 350px;
   grid-template-columns: repeat(9, 38.9px);
   grid-template-rows: repeat(15, 36.6px);
-  justify-items: center;
+  justify-items: center;  
   align-items: center;
 }
 

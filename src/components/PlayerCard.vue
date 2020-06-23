@@ -2,7 +2,7 @@
   <div>
     <div class="PlayerCard_Container" @click="isToggled=!isToggled">
       <div class="Favourite_Icon">
-        <img src="@/assets/heart_icon-black.png" width="20px" height="20px" />
+        <img src="@/assets/heart_icon-gray.png" width="20px" height="20px" />
       </div>
       <div class="PlayerName">
         <p>{{ player.name }} {{ player.lastName }}</p>
@@ -10,7 +10,7 @@
       <div class="PlayerPosition" :class="player.stats.position">{{ player.stats.position}}</div>
     </div>
     <div class="Toggled_Container" :class="{toggled: !isToggled}">
-      <div class="Image_Container">
+      <div class="Image_Container" @click="$emit('togglePlayerDetail', player)">
         <img :src="player.playerPicture" width="100%" height="100%" />
       </div>
       <div class="ClubName_Container">
@@ -90,7 +90,9 @@ export default {
 }
 
 .LM,
-.RM {
+.RM,
+.DM,
+.AM {
   color: green;
 }
 

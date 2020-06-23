@@ -119,7 +119,7 @@ export default {
   position: absolute;
   background-color: #203c00;
   width: 4.5rem;
-  left: 5rem;
+  left: 3.8rem;
   top: 1.3rem;
   text-align: center;
   padding: 1rem;
