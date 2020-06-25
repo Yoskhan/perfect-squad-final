@@ -7,12 +7,12 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    count: "ajde",
     players: [],
     formations: {},
     activeFormation: "none selected",
     playerPositions: [],
-    possiblePositions: positions,
+    possiblePositions: {},
+    playerThatWasBeforeOnPosition: "",
   },
   getters: {
     typeOfFormations: (state) => {
@@ -27,6 +27,8 @@ export const store = new Vuex.Store({
         switch (position) {
           case "LM":
           case "RM":
+          case "DM":
+          case "AM":
             playersGroupedByCategory.MID.push(player);
             break;
           case "LW":
@@ -47,6 +49,38 @@ export const store = new Vuex.Store({
 
       return playersGroupedByCategory;
     },
+    favoritePlayersInPopUp: (state) => (position) => {
+      let playersForPopup = [];
+
+      let exactPosition = position;
+
+      position = position.slice(0, 2).toUpperCase();
+
+      state.players.forEach((player) => {
+        for (let i = 0; i < player.stats.posiblePositions.length; i++) {
+          if (player.stats.posiblePositions[i] == position) {
+            playersForPopup.push(player);
+          }
+        }
+      });
+
+      state.playerPositions.forEach((player) => {
+        for (let i = 0; i < playersForPopup.length; i++) {
+          if (
+            player.player.name == playersForPopup[i].name &&
+            player.player.favourite == true &&
+            player.position != exactPosition
+          ) {
+            playersForPopup.splice(i, 1);
+          }
+        }
+      });
+
+      return playersForPopup;
+    },
+    getPlayerpositions(state) {
+      return state.playerPositions;
+    },
   },
   mutations: {
     fetchData(state, data) {
@@ -57,9 +91,33 @@ export const store = new Vuex.Store({
       //Setting string of Formation for Header.
       state.activeFormation = data;
 
-      //Making array of current formation to easy locate players.
+      state.playerPositions = JSON.parse(JSON.stringify(positions[data]));
 
-      state.playerPositions = state.possiblePositions[data];
+      state.players.forEach((player) => {
+        player.favourite = false;
+      });
+    },
+    setPlayerOnPosition(state, data) {
+      state.playerPositions.forEach((player) => {
+        if (player.player.name != "" && player.position == data.position) {
+          let popPlayer = player.player;
+          state.players.forEach((player) => {
+            if (player.lastName == popPlayer.lastName) player.favourite = false;
+          });
+        }
+      });
+
+      state.playerPositions.forEach((object) => {
+        if (object.player.name === data.player.name) {
+          object.player.favourite = false;
+          data["player"] = {};
+        }
+
+        if (object.position == data.position) {
+          object.player = data.player;
+          state.playerThatWasBeforeOnPosition = data.player;
+        }
+      });
     },
   },
   actions: {
@@ -68,6 +126,9 @@ export const store = new Vuex.Store({
     },
     setActiveFormation({ commit }, data) {
       commit("setActiveFormation", data);
+    },
+    setPlayerOnPosition({ commit }, data) {
+      commit("setPlayerOnPosition", data);
     },
   },
 });

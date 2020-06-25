@@ -22,7 +22,6 @@ export default {
         "https://jsonblob.com/api/jsonBlob/50fd5df9-8283-11ea-a9e3-ab457510f846"
       )
       .then(response => {
-        console.log(response.data);
         this.$store.dispatch("fetchData", response.data);
       });
   }
@@ -34,7 +33,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 7;
 }
 
 html,

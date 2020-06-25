@@ -1,20 +1,17 @@
 <template>
-  <div>
-    <div class="PlayerCard_Container" @click="isToggled=!isToggled">
-      <div class="Favourite_Icon">
-        <i
-          :style="[player.favourite == true ? {'color': 'red'} : {'color': 'gray'}]"
-          class="fa fa-heart"
-        ></i>
+  <div v-if="player.name">
+    <div class="PlayerCard_Container">
+      <div class="Favourite_Icon" @click="$emit('selectplayer', player)">
+        <i :style="[player.favourite == true ? {'color': 'red'} : {'color': 'gray'}]" class="fa fa-heart"></i>
       </div>
       <div class="PlayerName">
         <p>{{ player.name }} {{ player.lastName }}</p>
       </div>
       <div class="PlayerPosition" :class="player.stats.position">{{ player.stats.position}}</div>
     </div>
-    <div class="Toggled_Container" :class="{toggled: !isToggled}">
-      <div class="Image_Container" @click="$emit('togglePlayerDetail', player)">
-        <img :src="player.playerPicture" width="100%" height="100%" />
+    <div class="Toggled_Container">
+      <div class="Image_Container">
+        <img :src="player.playerPicture" width="250px" height="250px" />
       </div>
       <div class="ClubName_Container">
         <div class="ClubLogo">
@@ -29,18 +26,21 @@
 <script>
 export default {
   props: ["player"],
-  data() {
-    return {
-      isToggled: false
-    };
+  data(){
+      return {
+          isToggled: true  
+      }
   }
 };
 </script>
 
-<style>
-.toggled {
-  display: none;
+<style scoped>
+
+*{
+  box-sizing: border-box;
+  z-index: 2;
 }
+
 .PlayerCard_Container {
   text-align: center;
   background-color: #dfdfdf;
@@ -50,6 +50,12 @@ export default {
   padding: 0.3rem 1rem;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.69);
   align-items: center;
+  z-index: 2;
+
+}
+
+.Favourite_Icon {
+  margin: auto 0;
 }
 
 .PlayerName {
@@ -58,13 +64,11 @@ export default {
 }
 
 .Toggled_Container {
-  margin: -0.5rem 0.5rem;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.69);
 }
 
 .Image_Container {
-  max-width: 100%;
-  max-height: 100%;
+  object-fit: cover;
 }
 
 .ClubName_Container {

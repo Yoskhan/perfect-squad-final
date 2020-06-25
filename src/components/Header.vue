@@ -67,7 +67,7 @@ export default {
 
 <style scoped>
 * {
-  z-index: 1;
+  z-index: 7;
 }
 .Header {
   width: 100vw;
@@ -124,6 +124,7 @@ export default {
   text-align: center;
   padding: 1rem;
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  z-index: 7;
 }
 
 .Header_FormationListItem {
