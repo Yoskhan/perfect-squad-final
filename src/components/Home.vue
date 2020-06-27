@@ -124,21 +124,6 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-@media only screen and (max-width: 50rem) {
-  .StadiumContainer {
-    position: absolute;
-    height: 550px;
-    width: 350px;
-    background-image: url("../assets/football_field.jpg");
-    background-size: cover;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    overflow: visible;
-  }
-}
-
 .PositionContainer {
   background-color: #dfdfdf;
   text-align: center;
@@ -176,6 +161,31 @@ export default {
   grid-template-rows: repeat(15, 36.6px);
   justify-items: center;
   align-items: center;
+}
+
+@media only screen and (max-width: 50rem) {
+  .StadiumContainer {
+    position: absolute;
+    height: 480px;
+    width: 305px;
+    background-image: url("../assets/football_field.jpg");
+    background-size: cover;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: visible;
+  }
+
+  .Stadium_Grid {
+    display: grid;
+    height: 480px;
+    width: 305px;
+    grid-template-columns: repeat(9, 33.9px);
+    grid-template-rows: repeat(15, 32px);
+    justify-items: center;
+    align-items: center;
+  }
 }
 
 .Player_Icon {
