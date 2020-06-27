@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-show="!toggleStadion" class="PositionContainer">CM</div>
+    <div v-if="!toggleStadion" class="PositionContainer">{{ groupedPosition }}</div>
     <div v-show="!toggleStadion" class="SortByContainer">
       <p class="SortByContainerItem" @click="sortPlayersForPopUp('popular')">Popularity</p>
       <p class="SortByContainerItem" @click="sortPlayersForPopUp('value')">Value</p>
@@ -55,6 +55,33 @@ export default {
   computed: {
     playerPositions() {
       return this.$store.state.playerPositions;
+    },
+    groupedPosition() {
+      let groupedPosition = this.selectedPosition;
+      groupedPosition = groupedPosition.slice(0, 2).toUpperCase();
+
+      switch (groupedPosition) {
+        case "LM":
+        case "RM":
+        case "DM":
+        case "AM":
+          groupedPosition = "MID";
+          break;
+        case "LW":
+        case "RW":
+        case "CF":
+          groupedPosition = "ATT";
+          break;
+        case "RB":
+        case "CB":
+        case "LB":
+          groupedPosition = "DEF";
+          break;
+        case "GK":
+          groupedPosition = "GK";
+          break;
+      }
+      return groupedPosition;
     }
   },
   methods: {
@@ -128,12 +155,11 @@ export default {
   background-color: #dfdfdf;
   text-align: center;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.69);
-  position: absolute;
+  position: fixed;
   top: 2.5rem;
   width: 100%;
   padding: 0.2rem;
   z-index: 5;
-  overflow: visible;
 }
 
 .SortByContainer {
@@ -185,7 +211,6 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    overflow: visible;
   }
 
   .Stadium_Grid {
@@ -253,11 +278,17 @@ export default {
 
 .FavouritePlayers_Container {
   text-align: center;
-  margin: 10rem auto;
+  margin: 12rem auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   z-index: 2;
+}
+
+@media only screen and (max-width: 50rem) {
+  .FavouritePlayers_Container {
+    margin: 9rem auto;
+  }
 }
 
 .overlay {

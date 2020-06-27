@@ -39,4 +39,10 @@ export default {
   justify-content: center;
   z-index: 2;
 }
+
+@media only screen and (max-width: 50rem) {
+  .FavouritePlayers_Container {
+    margin: 5rem auto;
+  }
+}
 </style>

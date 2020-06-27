@@ -45,10 +45,6 @@ body {
   background-color: black;
 }
 
-.scrollingProblemSolver {
-  height: 800px;
-}
-
 #app {
   font-family: Arial;
 }
@@ -59,16 +55,9 @@ body {
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: 100% 100%;
-  width: 100% !important;
+  width: 100%;
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-  overflow: auto;
-    -webkit-overflow-scrolling: touch;
 }
-
-.router-view {
-}
-
-
 </style>
