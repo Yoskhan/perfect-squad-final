@@ -59,8 +59,12 @@ body {
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
+  overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .router-view {
 }
+
+
 </style>

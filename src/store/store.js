@@ -98,9 +98,9 @@ export const store = new Vuex.Store({
       });
     },
     setPlayerOnPosition(state, data) {
-      state.playerPositions.forEach((player) => {
-        if (player.player.name != "" && player.position == data.position) {
-          let popPlayer = player.player;
+      state.playerPositions.forEach((object) => {
+        if (object.player.name != "" && object.position == data.position) {
+          let popPlayer = object.player;
           state.players.forEach((player) => {
             if (player.lastName == popPlayer.lastName) player.favourite = false;
           });

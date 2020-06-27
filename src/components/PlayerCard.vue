@@ -50,6 +50,11 @@ export default {
   padding: 0.3rem 1rem;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.69);
   align-items: center;
+  cursor: pointer;
+}
+
+.Favourite_Icon {
+  cursor: pointer;
 }
 
 .PlayerName {
@@ -65,6 +70,7 @@ export default {
 .Image_Container {
   max-width: 100%;
   max-height: 100%;
+  cursor: pointer;
 }
 
 .ClubName_Container {

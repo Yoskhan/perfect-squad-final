@@ -66,7 +66,7 @@
 <script>
 import PlayerCard from "./PlayerCard.vue";
 import PlayerDetails from "./PlayerDetails.vue";
-import EmptyPlayerObject from '../store/emptyPlayerObject.js'
+import EmptyPlayerObject from "../store/emptyPlayerObject.js";
 
 export default {
   data() {
@@ -93,10 +93,9 @@ export default {
   padding: 0;
 }
 .Players_Container {
-  margin: 2.5rem auto 0;
+  margin: 2.5rem auto ;
   width: 80%;
-  min-height: 80vh;
-  min-width: 700px;
+  
   display: flex;
 }
 
@@ -105,8 +104,29 @@ export default {
 .MID_Container,
 .ATT_Container {
   width: 25%;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+
+}
+
+@media only screen and (max-width:50rem) {
+  .Players_Container {
+    display: flex;
+    flex-direction: column;
+    top: 3rem;
+    margin: 4rem 0;
+    right: 10rem;
+    width: auto;
+    align-items: center;
+  }
+
+  .GK_Container,
+  .DEF_Container,
+  .MID_Container,
+  .ATT_Container {
+    width:80%; 
+    margin:0 1rem;  
+  }
 }
 
 .GK_ContainerTitle,

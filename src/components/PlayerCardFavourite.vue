@@ -1,7 +1,7 @@
 <template>
   <div v-if="player.name">
-    <div class="PlayerCard_Container">
-      <div class="Favourite_Icon" @click="$emit('selectplayer', player)">
+    <div class="PlayerCard_Container" @click="$emit('selectplayer', player)">
+      <div class="Favourite_Icon">
         <i :style="[player.favourite == true ? {'color': 'red'} : {'color': 'gray'}]" class="fa fa-heart"></i>
       </div>
       <div class="PlayerName">

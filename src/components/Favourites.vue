@@ -21,7 +21,6 @@ export default {
   },
   computed : {
     players(){
-      console.log(this.$store.getters.getPlayerpositions)
       return this.$store.getters.getPlayerpositions
     }
   },

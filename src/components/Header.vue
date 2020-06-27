@@ -34,6 +34,39 @@
             </li>
           </ul>
         </div>
+        <div
+          class="Header_MobileHamburgerContainer"
+          @click="mobileIconDropdown = !mobileIconDropdown"
+        >
+          <i class="fa fa-bars Header_MobileHamburgerIcon"></i>
+        </div>
+      </div>
+      <div class="Header_MobileDropdownContainer" v-if="mobileIconDropdown">
+        <ul class="Header_MobileList">
+          <li class="Header_MobileListItem" @click="mobileIconDropdown = !mobileIconDropdown">
+            <router-link to="/players" class="Header_MobileListItem">Players</router-link>
+          </li>
+          <li class="Header_MobileListItem" @click="mobileIconDropdown = !mobileIconDropdown">
+            <router-link to="/favourites" class="Header_MobileListItem">Favourites</router-link>
+          </li>
+          <div
+            class="Header_MobileFormationsBtn"
+            @click="mobileFormationsDropdown = !mobileFormationsDropdown"
+            v-click-outside="hideFormationsDropdown"
+          >
+            Formation:
+            <i>{{ activeFormation }}</i>
+          </div>
+          <ul class="Header_MobileFormationsContainer" v-if="mobileFormationsDropdown">
+            <li
+              v-for="formation in formations"
+              :key="formation"
+              class="Header_FormationListItem"
+              @click="setActiveFormation(formation); mobileIconDropdown = !mobileIconDropdown"
+              :class="{'Header_SelectedFormation' : formation == $store.state.activeFormation}"
+            >{{ formation }}</li>
+          </ul>
+        </ul>
       </div>
     </div>
   </div>
@@ -43,7 +76,9 @@
 export default {
   data() {
     return {
-      formationsDropdown: false
+      formationsDropdown: false,
+      mobileFormationsDropdown: false,
+      mobileIconDropdown: false
     };
   },
   computed: {
@@ -97,6 +132,16 @@ export default {
   display: inline-block;
 }
 
+@media (max-width: 50rem) {
+  .Header_ListContainer {
+    display: none;
+  }
+
+  .Header_MobileHamburgerContainer {
+    display: relative;
+  }
+}
+
 .Header_List {
   display: inline-block;
   list-style-type: none;
@@ -135,5 +180,38 @@ export default {
 
 .Header_SelectedFormation {
   color: orange;
+}
+
+.Header_MobileHamburgerContainer {
+  color: white;
+}
+
+@media (min-width: 50rem) {
+  .Header_MobileHamburgerContainer {
+    display: none;
+  }
+}
+
+.Header_MobileDropdownContainer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  top: 3rem;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1rem 0;
+  color: white;
+  text-align: center;
+}
+
+.Header_MobileList {
+  list-style-type: none;
+  text-align: center;
+}
+
+.Header_MobileListItem {
+  text-decoration: none;
+  color: white;
+  margin: 1rem 0;
 }
 </style>

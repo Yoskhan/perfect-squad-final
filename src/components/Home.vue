@@ -23,6 +23,7 @@
         </div>
       </div>
     </div>
+
     <div class="FavouritePlayers_Container" v-if="!toggleStadion">
       <player-card-favourite
         :players="playersForPopUp"
@@ -66,7 +67,6 @@ export default {
       // return this.$store.getters.favoritePlayersInPopUp(position);
     },
     sortPlayersForPopUp(sortValue) {
-      console.log(sortValue);
       if (sortValue === "popular") {
         this.playersForPopUp.sort((a, b) =>
           a.playerSkills.ballSkills[sortValue] >=
@@ -107,25 +107,48 @@ export default {
 </script>
 
 <style scoped>
-.StadiumContainer {
+.positionrelative {
   position: relative;
+}
+.StadiumContainer {
+  position: absolute;
   height: 550px;
   width: 350px;
   top: 4rem;
-  margin: 2.5rem auto 0;
+  margin: 1rem auto 0;
   background-image: url("../assets/football_field.jpg");
   background-size: cover;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 50rem) {
+  .StadiumContainer {
+    position: absolute;
+    height: 550px;
+    width: 350px;
+    background-image: url("../assets/football_field.jpg");
+    background-size: cover;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: visible;
+  }
 }
 
 .PositionContainer {
   background-color: #dfdfdf;
   text-align: center;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.69);
-  position: fixed;
+  position: absolute;
   top: 2.5rem;
   width: 100%;
   padding: 0.2rem;
   z-index: 5;
+  overflow: visible;
 }
 
 .SortByContainer {
@@ -142,6 +165,7 @@ export default {
 .SortByContainerItem {
   margin: 0 auto;
   width: 5rem;
+  cursor: pointer;
 }
 
 .Stadium_Grid {

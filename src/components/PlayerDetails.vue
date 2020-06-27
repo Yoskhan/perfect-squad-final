@@ -335,4 +335,33 @@ span {
   justify-self: end;
   font-size: 0.9rem;
 }
+
+@media only screen and (max-width:45rem) {
+ .PlayersDetail_Container {
+   display: flex;
+   flex-flow: column;
+   height: auto;
+   width: 100%;
+   transform: none;
+   top: 0;
+   left: 0;
+   bottom: auto;
+
+ }
+ .PlayerSkills {
+   overflow-y:unset;
+ }
+
+ .PlayerInfo {
+   border-right: none;
+   padding: 0;
+   width: 100%;
+ }
+
+ .PlayerSkills {
+   padding: 0;
+   width: 100%;
+   margin-top: 2rem;
+ }
+}
 </style>
