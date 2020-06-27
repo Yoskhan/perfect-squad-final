@@ -14,7 +14,7 @@
     </div>
     <div class="Toggled_Container" :class="{toggled: !isToggled}">
       <div class="Image_Container" @click="$emit('togglePlayerDetail', player)">
-        <img :src="player.playerPicture" width="100%" height="100%" />
+        <router-link :to="'/players/' + player.name + '_' + player.lastName"><img :src="player.playerPicture" width="100%" height="100%" /></router-link>
       </div>
       <div class="ClubName_Container">
         <div class="ClubLogo">

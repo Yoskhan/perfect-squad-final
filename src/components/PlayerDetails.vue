@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="PlayersDetail_Container">
-      <div class="exitSign" @click="$emit('closeplayerdetail')">X</div>
+      <router-link to="/players"><div class="exitSign">X</div></router-link>
       <div class="PlayerInfo">
         <div class="playerInfo_TitleContainer">
           <div class="PlayerInfo_Name">{{playerShown.name}} {{playerShown.lastName}}</div>
@@ -105,7 +105,7 @@
         </div>
       </div>
     </div>
-    <div class="overlay" @click="$emit('click-on-overlay')"></div>
+    <router-link to="/players"><div class="overlay"></div></router-link>
   </div>
 </template>
 

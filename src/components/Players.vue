@@ -54,18 +54,22 @@
         </div>
       </div>
     </div>
-    <playerdetail
+    <router-view
+      
+      :playerShown="shownPlayerDetail"
+    ></router-view>
+    <!-- <playerdetail
       :class="{isToggled: isPlayerDetailToggled}"
       v-on:click-on-overlay="isPlayerDetailToggled = !isPlayerDetailToggled"
       v-on:closeplayerdetail="isPlayerDetailToggled = !isPlayerDetailToggled"
       :playerShown="shownPlayerDetail"
-    ></playerdetail>
+    ></playerdetail> -->
   </div>
 </template>
 
 <script>
 import PlayerCard from "./PlayerCard.vue";
-import PlayerDetails from "./PlayerDetails.vue";
+
 import EmptyPlayerObject from "../store/emptyPlayerObject.js";
 
 export default {
@@ -77,7 +81,7 @@ export default {
   },
   components: {
     playercard: PlayerCard,
-    playerdetail: PlayerDetails
+    
   },
   computed: {
     playersGroupedByCategory() {
@@ -93,9 +97,9 @@ export default {
   padding: 0;
 }
 .Players_Container {
-  margin: 2.5rem auto ;
+  margin: 2.5rem auto;
   width: 80%;
-  
+
   display: flex;
 }
 
@@ -106,10 +110,9 @@ export default {
   width: 25%;
   margin: 0 auto;
   padding: 0;
-
 }
 
-@media only screen and (max-width:50rem) {
+@media only screen and (max-width: 50rem) {
   .Players_Container {
     display: flex;
     flex-direction: column;
@@ -124,8 +127,8 @@ export default {
   .DEF_Container,
   .MID_Container,
   .ATT_Container {
-    width:80%; 
-    margin:0 1rem;  
+    width: 80%;
+    margin: 0 1rem;
   }
 }
 

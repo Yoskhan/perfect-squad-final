@@ -45,6 +45,10 @@ body {
   background-color: black;
 }
 
+.scrollingProblemSolver {
+  height: 800px;
+}
+
 #app {
   font-family: Arial;
 }
