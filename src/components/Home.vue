@@ -239,6 +239,18 @@ export default {
   font-size: 0.7rem;
 }
 
+@media only screen and (max-width: 50rem) {
+  .FormationPicture {
+    width: 3rem;
+    top: 0.5rem;
+  }
+
+  .PlayerName {
+    width: 4.3rem;
+    right: 0.6rem;
+  }
+}
+
 .FavouritePlayers_Container {
   text-align: center;
   margin: 10rem auto;
