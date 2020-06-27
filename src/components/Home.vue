@@ -69,10 +69,10 @@ export default {
     sortPlayersForPopUp(sortValue) {
       if (sortValue === "popular") {
         this.playersForPopUp.sort((a, b) =>
-          a.playerSkills.ballSkills[sortValue] >=
+          a.playerSkills.ballSkills[sortValue] >
           b.playerSkills.ballSkills[sortValue]
-            ? 1
-            : -1
+            ? -1
+            : 1
         );
       } else if (sortValue === "value") {
         this.playersForPopUp.sort((a, b) =>
@@ -145,6 +145,17 @@ export default {
   width: 100%;
   padding: 0.2rem;
   z-index: 5;
+}
+
+@media only screen and (max-width: 50rem) {
+  .PositionContainer {
+    font-size: 1.4rem;
+  }
+
+  .SortByContainer {
+    top: 4.5rem;
+    font-size: 1.4rem;
+  }
 }
 
 .SortByContainerItem {
