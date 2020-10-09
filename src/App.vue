@@ -19,7 +19,7 @@ export default {
   created() {
     axios
       .get(
-        "https://jsonblob.com/api/jsonBlob/50fd5df9-8283-11ea-a9e3-ab457510f846"
+        "https://jsonblob.com/api/45874689-08dd-11eb-a3c1-d9239196887e?fbclid=IwAR2j0GGYdE6a7CHf367QTkX3JjhiMGJGdPpFANorjIETAY9NcUN-F_Sypas"
       )
       .then(response => {
         this.$store.dispatch("fetchData", response.data);
